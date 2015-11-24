@@ -75,6 +75,11 @@ var IterationRunner = jsface.Class([Options, EventEmitter], {
         var folderNeeded = _und.find(folders, function (folder) {
             return folder.name === folderName;
         });
+        if (!folderNeeded) { // eg: '201. users endpoint'.startsWith('201');
+            folderNeeded = _und.find(folders, function (folder) {
+                return folder.name.startsWith(folderName);
+            });
+        }
         if (!folderNeeded) {
             return null;
         }
